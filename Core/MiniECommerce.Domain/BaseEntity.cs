@@ -6,9 +6,10 @@
         {
             CreatedDate = DateTime.UtcNow;
             Status = DataStatus.Inserted;
+            ID = new Guid();
         }
 
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -14,8 +13,7 @@ namespace MiniECommerce.Persistance.Migrations
                 name: "BaseEntity",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
@@ -39,8 +37,8 @@ namespace MiniECommerce.Persistance.Migrations
                     Color_Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true),
                     Price = table.Column<decimal>(type: "numeric", nullable: true),
                     IsApproved = table.Column<bool>(type: "boolean", nullable: true),
-                    AppUserID = table.Column<int>(type: "integer", nullable: true),
-                    ProductID = table.Column<int>(type: "integer", nullable: true),
+                    AppUserID = table.Column<Guid>(type: "uuid", nullable: true),
+                    ProductID = table.Column<Guid>(type: "uuid", nullable: true),
                     Product_Name = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     UnitPrice = table.Column<decimal>(type: "numeric", nullable: true),
                     ImageUrl = table.Column<string>(type: "text", nullable: true),
@@ -48,10 +46,10 @@ namespace MiniECommerce.Persistance.Migrations
                     IsOfferable = table.Column<bool>(type: "boolean", nullable: true),
                     IsSold = table.Column<bool>(type: "boolean", nullable: true),
                     UsageStatus = table.Column<int>(type: "integer", nullable: true),
-                    CategoryID = table.Column<int>(type: "integer", nullable: true),
-                    BrandID = table.Column<int>(type: "integer", nullable: true),
-                    ColorID = table.Column<int>(type: "integer", nullable: true),
-                    Product_AppUserID = table.Column<int>(type: "integer", nullable: true),
+                    CategoryID = table.Column<Guid>(type: "uuid", nullable: true),
+                    BrandID = table.Column<Guid>(type: "uuid", nullable: true),
+                    ColorID = table.Column<Guid>(type: "uuid", nullable: true),
+                    Product_AppUserID = table.Column<Guid>(type: "uuid", nullable: true),
                     Role_Name = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -97,9 +95,9 @@ namespace MiniECommerce.Persistance.Migrations
                 name: "AppUserRoles",
                 columns: table => new
                 {
-                    AppUserID = table.Column<int>(type: "integer", nullable: false),
-                    RoleID = table.Column<int>(type: "integer", nullable: false),
-                    ID = table.Column<int>(type: "integer", nullable: false),
+                    AppUserID = table.Column<Guid>(type: "uuid", nullable: false),
+                    RoleID = table.Column<Guid>(type: "uuid", nullable: false),
+                    ID = table.Column<Guid>(type: "uuid", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),

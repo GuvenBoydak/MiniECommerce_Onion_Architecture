@@ -22,13 +22,13 @@
 
         public UsageStatus UsageStatus { get; set; }
 
-        public int CategoryID { get; set; }
+        public Guid CategoryID { get; set; }
 
-        public int? BrandID { get; set; }
+        public Guid? BrandID { get; set; }
 
-        public int? ColorID { get; set; }
+        public Guid? ColorID { get; set; }
 
-        public int AppUserID { get; set; }
+        public Guid AppUserID { get; set; }
 
         //Relational Properties
         public Category Category { get; set; }

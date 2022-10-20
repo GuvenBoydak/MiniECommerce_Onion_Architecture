@@ -2,9 +2,9 @@
 {
     public class AppUserRole : BaseEntity
     {
-        public int AppUserID { get; set; }
+        public Guid AppUserID { get; set; }
 
-        public int RoleID { get; set; }
+        public Guid RoleID { get; set; }
 
         //Relational Properties
         public Role Role { get; set; }

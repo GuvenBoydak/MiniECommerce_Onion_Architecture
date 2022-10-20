@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MiniECommerce.Persistance.Migrations
 {
     [DbContext(typeof(MiniECommerceDbContext))]
-    [Migration("20221020185510_mig1")]
+    [Migration("20221020194857_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace MiniECommerce.Persistance.Migrations
 
             modelBuilder.Entity("MiniECommerce.Domain.AppUserRole", b =>
                 {
-                    b.Property<int>("RoleID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("RoleID")
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("AppUserID")
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -38,8 +38,8 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("ID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ID")
+                        .HasColumnType("uuid");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -56,11 +56,9 @@ namespace MiniECommerce.Persistance.Migrations
 
             modelBuilder.Entity("MiniECommerce.Domain.BaseEntity", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+                        .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("timestamp with time zone");
@@ -97,11 +95,9 @@ namespace MiniECommerce.Persistance.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<short>("IncorrectEntry")
@@ -115,19 +111,15 @@ namespace MiniECommerce.Persistance.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
                     b.Property<byte[]>("PasswordSalt")
-                        .IsRequired()
                         .HasColumnType("bytea");
 
                     b.Property<string>("PhoneNumber")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("UserName")
@@ -185,8 +177,8 @@ namespace MiniECommerce.Persistance.Migrations
                 {
                     b.HasBaseType("MiniECommerce.Domain.BaseEntity");
 
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("AppUserID")
+                        .HasColumnType("uuid");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("boolean");
@@ -194,8 +186,8 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("ProductID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("ProductID")
+                        .HasColumnType("uuid");
 
                     b.HasIndex("AppUserID");
 
@@ -208,18 +200,18 @@ namespace MiniECommerce.Persistance.Migrations
                 {
                     b.HasBaseType("MiniECommerce.Domain.BaseEntity");
 
-                    b.Property<int>("AppUserID")
-                        .HasColumnType("integer")
+                    b.Property<Guid>("AppUserID")
+                        .HasColumnType("uuid")
                         .HasColumnName("Product_AppUserID");
 
-                    b.Property<int?>("BrandID")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("BrandID")
+                        .HasColumnType("uuid");
 
-                    b.Property<int>("CategoryID")
-                        .HasColumnType("integer");
+                    b.Property<Guid>("CategoryID")
+                        .HasColumnType("uuid");
 
-                    b.Property<int?>("ColorID")
-                        .HasColumnType("integer");
+                    b.Property<Guid?>("ColorID")
+                        .HasColumnType("uuid");
 
                     b.Property<string>("Description")
                         .IsRequired()

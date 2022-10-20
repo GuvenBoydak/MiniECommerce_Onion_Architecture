@@ -11,9 +11,9 @@
 
         public bool IsApproved { get; set; }
 
-        public int AppUserID { get; set; }
+        public Guid AppUserID { get; set; }
 
-        public int ProductID { get; set; }
+        public Guid ProductID { get; set; }
 
         //Relational Properties
         public Product Product { get; set; }
