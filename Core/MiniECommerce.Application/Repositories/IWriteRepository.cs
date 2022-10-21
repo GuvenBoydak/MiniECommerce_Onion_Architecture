@@ -6,8 +6,6 @@ namespace MiniECommerce.Application
     {
        Task<bool> AddAsync(T entity);
 
-       Task<bool> AddRangeAsync(List<T> entities);
-
        Task<bool> DeleteAsync(Guid id);
 
        Task<bool> Update(T entity);
