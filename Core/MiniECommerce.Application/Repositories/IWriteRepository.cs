@@ -4,10 +4,10 @@ namespace MiniECommerce.Application
 {
     public interface IWriteRepository<T> :IRepository<T> where T : BaseEntity
     {
-       Task<bool> AddAsync(T entity);
+       Task AddAsync(T entity);
 
-       Task<bool> DeleteAsync(Guid id);
+       Task DeleteAsync(Guid id);
 
-       Task<bool> Update(T entity);
+       Task Update(T entity);
     }
 }
