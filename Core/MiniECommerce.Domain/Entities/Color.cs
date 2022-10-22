@@ -5,7 +5,7 @@
         public string Name { get; set; }
 
         //Relational Properties
-        public List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 
 }

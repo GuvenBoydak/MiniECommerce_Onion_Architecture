@@ -16,9 +16,9 @@
         public Guid ProductID { get; set; }
 
         //Relational Properties
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
-        public AppUser AppUser { get; set; }
+        public virtual AppUser AppUser { get; set; }
     }
 
 }

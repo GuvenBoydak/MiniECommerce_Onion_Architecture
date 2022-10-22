@@ -7,7 +7,7 @@
         public string Description { get; set; }
 
         //Relational Properyties
-        public List<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 
 }

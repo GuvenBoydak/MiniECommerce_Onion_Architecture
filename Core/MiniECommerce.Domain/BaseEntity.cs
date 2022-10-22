@@ -1,6 +1,6 @@
 ﻿namespace MiniECommerce.Domain
 {
-    public class BaseEntity
+    public abstract class BaseEntity
     {
         public BaseEntity()
         {

@@ -7,9 +7,9 @@
         public Guid RoleID { get; set; }
 
         //Relational Properties
-        public Role Role { get; set; }
+        public virtual Role Role { get; set; }
 
-        public AppUser AppUser { get; set; }
+        public virtual AppUser AppUser { get; set; }
     }
 
 }

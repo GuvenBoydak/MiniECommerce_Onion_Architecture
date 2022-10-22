@@ -35,7 +35,11 @@
         public string PhoneNumber { get; set; }
 
         //Relational Properties
-        public List<AppUserRole> AppUserRoles { get; set; }
+        public virtual List<AppUserRole> AppUserRoles { get; set; }
+
+        public virtual List<Offer> Offers { get; set; }
+
+        public virtual List<Product> Products { get; set; }
     }
 
 }

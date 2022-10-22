@@ -5,7 +5,7 @@
         public string Name { get; set; }
 
         //Relational Properties
-        public List<AppUserRole> AppUserRoles { get; set; }
+        public virtual List<AppUserRole> AppUserRoles { get; set; }
     }
 
 }
