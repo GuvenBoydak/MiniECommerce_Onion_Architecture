@@ -4,6 +4,6 @@ namespace MiniECommerce.Application
 {
     public interface IReadCategoryRepository:IReadRepository<Category>
     {
-        Task<Category> GetCategoryWithProductsAsync(Guid id);
+        Task<Category> GetByCategoryWithProductsAsync(Guid id);
     }
 }

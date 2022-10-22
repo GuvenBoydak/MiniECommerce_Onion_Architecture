@@ -4,6 +4,10 @@ namespace MiniECommerce.Application
 {
     public interface IReadOfferRepository:IWriteRepository<Offer>
     {
-        Task<List<Offer>> GetByOffersProductIDAsync(Guid id);
+        Task<List<Offer>> GetByOffersOnTheProductAsync(Guid productID);
+
+        Task<List<Offer>> GetByOffersFromAppUserProductsAsync(Guid appUserID);
+
+        Task<List<Offer>> GetByAppUserMadeOffersAsync(Guid appUserID);
     }
 }
