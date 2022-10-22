@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\MiniECommerce.Application\MiniECommerce.Application.csproj" />
     <ProjectReference Include="..\..\Core\MiniECommerce.Domain\MiniECommerce.Domain.csproj" />
   </ItemGroup>
 
