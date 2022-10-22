@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MiniECommerce.Persistance.Migrations
 {
     [DbContext(typeof(MiniECommerceDbContext))]
-    [Migration("20221020194857_mig1")]
+    [Migration("20221022092030_mig1")]
     partial class mig1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,69 @@ namespace MiniECommerce.Persistance.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("MiniECommerce.Domain.AppUser", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ActivationCode")
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Active")
+                        .HasMaxLength(50)
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("text");
+
+                    b.Property<short>("IncorrectEntry")
+                        .HasColumnType("smallint");
+
+                    b.Property<bool>("IsLock")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("LastActivty")
+                        .HasMaxLength(50)
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("bytea");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("bytea");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("AppUsers");
+                });
 
             modelBuilder.Entity("MiniECommerce.Domain.AppUserRole", b =>
                 {
@@ -54,7 +117,7 @@ namespace MiniECommerce.Persistance.Migrations
                     b.ToTable("AppUserRoles");
                 });
 
-            modelBuilder.Entity("MiniECommerce.Domain.BaseEntity", b =>
+            modelBuilder.Entity("MiniECommerce.Domain.Brand", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd()
@@ -66,9 +129,10 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("Discriminator")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
 
                     b.Property<int>("Status")
                         .HasColumnType("integer");
@@ -78,73 +142,20 @@ namespace MiniECommerce.Persistance.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("BaseEntity");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("BaseEntity");
-                });
-
-            modelBuilder.Entity("MiniECommerce.Domain.AppUser", b =>
-                {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
-
-                    b.Property<Guid>("ActivationCode")
-                        .HasColumnType("uuid");
-
-                    b.Property<bool>("Active")
-                        .HasMaxLength(50)
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("text");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("text");
-
-                    b.Property<short>("IncorrectEntry")
-                        .HasColumnType("smallint");
-
-                    b.Property<bool>("IsLock")
-                        .HasColumnType("boolean");
-
-                    b.Property<DateTime>("LastActivty")
-                        .HasMaxLength(50)
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .HasColumnType("bytea");
-
-                    b.Property<byte[]>("PasswordSalt")
-                        .HasColumnType("bytea");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("text");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasDiscriminator().HasValue("AppUser");
-                });
-
-            modelBuilder.Entity("MiniECommerce.Domain.Brand", b =>
-                {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("character varying(50)");
-
-                    b.HasDiscriminator().HasValue("Brand");
+                    b.ToTable("Brands");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Category", b =>
                 {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -154,31 +165,61 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("Category_Name");
+                        .HasColumnType("character varying(50)");
 
-                    b.HasDiscriminator().HasValue("Category");
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Color", b =>
                 {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("Color_Name");
+                        .HasColumnType("character varying(50)");
 
-                    b.HasDiscriminator().HasValue("Color");
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Offer", b =>
                 {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("AppUserID")
                         .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsApproved")
                         .HasColumnType("boolean");
@@ -189,20 +230,29 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<Guid>("ProductID")
                         .HasColumnType("uuid");
 
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("ID");
+
                     b.HasIndex("AppUserID");
 
                     b.HasIndex("ProductID");
 
-                    b.HasDiscriminator().HasValue("Offer");
+                    b.ToTable("Offers");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Product", b =>
                 {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
 
                     b.Property<Guid>("AppUserID")
-                        .HasColumnType("uuid")
-                        .HasColumnName("Product_AppUserID");
+                        .HasColumnType("uuid");
 
                     b.Property<Guid?>("BrandID")
                         .HasColumnType("uuid");
@@ -213,11 +263,16 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<Guid?>("ColorID")
                         .HasColumnType("uuid");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(500)
-                        .HasColumnType("character varying(500)")
-                        .HasColumnName("Product_Description");
+                        .HasColumnType("character varying(500)");
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -232,14 +287,21 @@ namespace MiniECommerce.Persistance.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasColumnName("Product_Name");
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("UnitPrice")
                         .HasColumnType("numeric");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("UsageStatus")
                         .HasColumnType("integer");
+
+                    b.HasKey("ID");
 
                     b.HasIndex("AppUserID");
 
@@ -249,20 +311,35 @@ namespace MiniECommerce.Persistance.Migrations
 
                     b.HasIndex("ColorID");
 
-                    b.HasDiscriminator().HasValue("Product");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Role", b =>
                 {
-                    b.HasBaseType("MiniECommerce.Domain.BaseEntity");
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("character varying(50)")
-                        .HasColumnName("Role_Name");
+                        .HasColumnType("character varying(50)");
 
-                    b.HasDiscriminator().HasValue("Role");
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.AppUserRole", b =>
@@ -287,7 +364,7 @@ namespace MiniECommerce.Persistance.Migrations
             modelBuilder.Entity("MiniECommerce.Domain.Offer", b =>
                 {
                     b.HasOne("MiniECommerce.Domain.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Offers")
                         .HasForeignKey("AppUserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -306,7 +383,7 @@ namespace MiniECommerce.Persistance.Migrations
             modelBuilder.Entity("MiniECommerce.Domain.Product", b =>
                 {
                     b.HasOne("MiniECommerce.Domain.AppUser", "AppUser")
-                        .WithMany()
+                        .WithMany("Products")
                         .HasForeignKey("AppUserID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -337,6 +414,10 @@ namespace MiniECommerce.Persistance.Migrations
             modelBuilder.Entity("MiniECommerce.Domain.AppUser", b =>
                 {
                     b.Navigation("AppUserRoles");
+
+                    b.Navigation("Offers");
+
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MiniECommerce.Domain.Brand", b =>

@@ -21,8 +21,14 @@ namespace MiniECommerce.Persistance
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //Assembly'deki Tüm configuration dosylarını okuyor. IEntityTypeConfiguration'den implemente eden classları reflection sayesinde buluyor.
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+            modelBuilder.ApplyConfiguration(new AppUserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductConfiguration());
+            modelBuilder.ApplyConfiguration(new OfferConfiguration());
+            modelBuilder.ApplyConfiguration(new ColorConfiguration());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
         }
 
     }
