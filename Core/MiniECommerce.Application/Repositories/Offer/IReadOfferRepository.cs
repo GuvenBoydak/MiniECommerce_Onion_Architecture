@@ -2,7 +2,7 @@
 
 namespace MiniECommerce.Application
 {
-    public interface IReadOfferRepository:IWriteRepository<Offer>
+    public interface IReadOfferRepository: IReadRepository<Offer>
     {
         Task<List<Offer>> GetByOffersOnTheProductAsync(Guid productID);
 

@@ -2,7 +2,7 @@
 
 namespace MiniECommerce.Application
 {
-    public interface IReadBrandRepository:IWriteRepository<Brand>
+    public interface IReadBrandRepository: IReadRepository<Brand>
     {
     }
 }

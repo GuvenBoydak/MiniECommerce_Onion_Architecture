@@ -2,7 +2,7 @@
 
 namespace MiniECommerce.Application
 {
-    public interface IWriteRepository : IWriteRepository<Offer>
+    public interface IWriteOfferRepository : IWriteRepository<Offer>
     {
     }
 }
