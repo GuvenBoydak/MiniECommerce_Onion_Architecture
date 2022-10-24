@@ -5,20 +5,20 @@ namespace MiniECommerce.Application
 {
     public interface IBaseService<T> where T :BaseEntity
     {
-        Task<List<T>> GetActiveAsync();
+        Task<CustomResponseDto<List<T>>> GetActiveAsync();
 
-        Task<List<T>> GetPassiveAsync();
+        Task<CustomResponseDto<List<T>>> GetPassiveAsync();
 
-        Task<List<T>> GetAll();
+        Task<CustomResponseDto<List<T>>> GetAll();
 
-        Task<List<T>> Where(Expression<Func<T, bool>> filter);
+        Task<CustomResponseDto<List<T>>> Where(Expression<Func<T, bool>> filter);
 
-        Task<T> GetByIDAsync(Guid ID);
+        Task<CustomResponseDto<T>> GetByIDAsync(Guid ID);
 
-        Task AddAsync(T entity);
+        Task<CustomResponseDto<NoContentDto>> AddAsync(T entity);
 
-        Task DeleteAsync(Guid id);
+        Task<CustomResponseDto<NoContentDto>> DeleteAsync(Guid id);
 
-        Task UpdateAsync(T entity);
+        Task<CustomResponseDto<NoContentDto>> UpdateAsync(T entity);
     }
 }
