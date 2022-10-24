@@ -4,6 +4,6 @@ namespace MiniECommerce.Application
 {
     public interface IAppUserRoleService : IBaseService<AppUserRole>
     {
-        Task<CustomResponseDto<List<AppUserRole>>> GetAppUserID(Guid id);
+        Task<List<AppUserRole>> GetAppUserID(Guid id);
     }
 }
