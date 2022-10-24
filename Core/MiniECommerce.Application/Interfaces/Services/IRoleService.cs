@@ -4,6 +4,5 @@ namespace MiniECommerce.Application
 {
     public interface IRoleService : IBaseService<Role>
     {
-
     }
 }

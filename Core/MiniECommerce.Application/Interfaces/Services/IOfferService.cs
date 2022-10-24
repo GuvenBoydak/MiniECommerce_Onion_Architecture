@@ -4,6 +4,10 @@ namespace MiniECommerce.Application
 {
     public interface IOfferService : IBaseService<Offer>
     {
-        Task<List<Offer>> GetByOffersProductIDAsync(Guid id);
+        Task<List<Offer>> GetByOffersOnTheProductAsync(Guid productID);
+
+        Task<List<Offer>> GetByOffersFromAppUserProductsAsync(Guid appUserID);
+
+        Task<List<Offer>> GetByAppUserMadeOffersAsync(Guid appUserID);
     }
 }
