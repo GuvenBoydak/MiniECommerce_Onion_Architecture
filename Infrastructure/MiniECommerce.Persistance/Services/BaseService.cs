@@ -1,4 +1,5 @@
-﻿using MiniECommerce.Application;
+﻿using Microsoft.EntityFrameworkCore;
+using MiniECommerce.Application;
 using MiniECommerce.Domain;
 using System.Linq.Expressions;
 
@@ -6,46 +7,58 @@ namespace MiniECommerce.Persistance
 {
     public class BaseService<T> : IBaseService<T> where T : BaseEntity
     {
-        private readonly IRepository<T> _repository;
+        protected readonly IReadRepository<T> _readRepository;
+        private readonly IWriteRepository<T> _writeRepository;
+        protected readonly IUnitOfWork _unitOfWork;
 
-        public Task<bool> AddAsync(T entity)
+        public BaseService(IReadRepository<T> readRepository, IWriteRepository<T> writeRepository, IUnitOfWork unitOfWork)
         {
-            throw new NotImplementedException();
+            _readRepository = readRepository;
+            _writeRepository = writeRepository;
+            _unitOfWork = unitOfWork;
         }
 
-        public Task<bool> DeleteAsync(Guid id)
+        public async Task AddAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _writeRepository.AddAsync(entity);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task<IQueryable<T>> GetActiveAsync()
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _writeRepository.DeleteAsync(id);
+            await _unitOfWork.SaveAsync();
         }
 
-        public Task<IQueryable<T>> GetAll()
+        public async Task<List<T>> GetActiveAsync()
         {
-            throw new NotImplementedException();
+            return await _readRepository.GetActive().ToListAsync();
         }
 
-        public Task<T> GetByIDAsync(Guid ID)
+        public async Task<List<T>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _readRepository.GetAll().ToListAsync();
         }
 
-        public Task<IQueryable<T>> GetPassiveAsync()
+        public async Task<T> GetByIDAsync(Guid id)
         {
-            throw new NotImplementedException();
+            return await _readRepository.GetByIDAsync(id);
         }
 
-        public Task<bool> Update(T entity)
+        public async Task<List<T>> GetPassiveAsync()
         {
-            throw new NotImplementedException();
+            return await _readRepository.GetPassive().ToListAsync();
         }
 
-        public Task<IQueryable<T>> Where(Expression<Func<T, bool>> filter)
+        public async Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await _writeRepository.Update(entity);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async Task<List<T>> Where(Expression<Func<T, bool>> filter)
+        {
+            return await _readRepository.Where(filter).ToListAsync();
         }
     }
 }
