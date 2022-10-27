@@ -6,6 +6,14 @@ namespace MiniECommerce.Application
     {
         Task<AppUser> GetByEmailAsync(string email);
 
-        Task<AppUser> GetByActivationCode(Guid code);
+        Task<AppUser> GetByActivationCodeAsync(Guid code);
+
+        Task<AppUser> RegisterAsync(AppUserRegisterDto registerDto);
+
+        Task<AppUser> LoginAsync(AppUserLoginDto entity);
+
+        Task<AccessToken> CreateAccessTokenAsync(AppUser entity);
+
+        Task UpdatePasswordAsync(Guid id, AppUserPasswordUpdateDto entity);
     }
 }
