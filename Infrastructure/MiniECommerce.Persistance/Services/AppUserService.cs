@@ -142,14 +142,14 @@ namespace MiniECommerce.Persistance.Services
             return user;
         }
 
-        public async Task UpdatePasswordAsync(Guid id, AppUserPasswordUpdateDto entity)
+        public async Task UpdatePasswordAsync(AppUserPasswordUpdateDto entity)
         {
-            AppUser appUser = await _readAppUserRepository.GetByIDAsync(id);
+            AppUser appUser = await _readAppUserRepository.GetByIDAsync(entity.ID);
             if (appUser == null) 
-                throw new InvalidOperationException($"({id}) Kullanıcı Bulunamadı");
+                throw new NotFoundException($"({entity.ID}) AppUser NotFound");
 
             if (!HashingHelper.VerifyPasswordHash(entity.OldPassword, appUser.PasswordHash, appUser.PasswordSalt))
-                throw new InvalidOperationException($" Parolanız Yanlış");
+                throw new NotFoundException($"Password is incorrect");
 
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(entity.NewPassword, out passwordHash, out passwordSalt);
