@@ -6,7 +6,7 @@ namespace MiniECommerce.Persistance
     public class ProductService : BaseService<Product>, IProductService
     {
         private readonly IReadProductRepository _readProductRepository;
-        public ProductService(IReadProductRepository readProductRepository, IWriteRepository<Product> writeRepository, IUnitOfWork unitOfWork) : base(readProductRepository, writeRepository, unitOfWork)
+        public ProductService(IReadProductRepository readProductRepository, IWriteRepository<Product> writeRepository, IUnitOfWork unitOfWork) : base(readProductRepository, writeRepository)
         {
             _readProductRepository = readProductRepository;
         }

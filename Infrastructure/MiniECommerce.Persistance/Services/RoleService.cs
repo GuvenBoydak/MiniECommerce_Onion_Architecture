@@ -5,7 +5,7 @@ namespace MiniECommerce.Persistance
 {
     public class RoleService : BaseService<Role>, IRoleService
     {
-        public RoleService(IReadRepository<Role> readRepository, IWriteRepository<Role> writeRepository, IUnitOfWork unitOfWork) : base(readRepository, writeRepository, unitOfWork)
+        public RoleService(IReadRepository<Role> readRepository, IWriteRepository<Role> writeRepository, IUnitOfWork unitOfWork) : base(readRepository, writeRepository)
         {
         }
     }

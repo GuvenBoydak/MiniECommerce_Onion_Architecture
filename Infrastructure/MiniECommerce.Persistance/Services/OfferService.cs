@@ -7,7 +7,7 @@ namespace MiniECommerce.Persistance
     {
         private readonly IReadOfferRepository _readOfferRepository;
 
-        public OfferService(IReadOfferRepository readOfferRepository, IWriteRepository<Offer> writeRepository, IUnitOfWork unitOfWork) : base(readOfferRepository, writeRepository, unitOfWork)
+        public OfferService(IReadOfferRepository readOfferRepository, IWriteRepository<Offer> writeRepository, IUnitOfWork unitOfWork) : base(readOfferRepository, writeRepository)
         {
             _readOfferRepository = readOfferRepository;
         }

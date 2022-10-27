@@ -6,7 +6,7 @@ namespace MiniECommerce.Persistance
 {
     public class AppUserRoleService : BaseService<AppUserRole>, IAppUserRoleService
     {
-        public AppUserRoleService(IReadRepository<AppUserRole> readRepository, IWriteRepository<AppUserRole> writeRepository, IUnitOfWork unitOfWork) : base(readRepository, writeRepository, unitOfWork)
+        public AppUserRoleService(IReadRepository<AppUserRole> readRepository, IWriteRepository<AppUserRole> writeRepository, IUnitOfWork unitOfWork) : base(readRepository, writeRepository)
         {
         }
 

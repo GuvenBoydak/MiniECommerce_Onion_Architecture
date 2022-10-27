@@ -9,25 +9,37 @@ namespace MiniECommerce.Persistance
     {
         protected readonly IReadRepository<T> _readRepository;
         private readonly IWriteRepository<T> _writeRepository;
-        protected readonly IUnitOfWork _unitOfWork;
 
-        public BaseService(IReadRepository<T> readRepository, IWriteRepository<T> writeRepository, IUnitOfWork unitOfWork)
+        public BaseService(IReadRepository<T> readRepository, IWriteRepository<T> writeRepository)
         {
             _readRepository = readRepository;
             _writeRepository = writeRepository;
-            _unitOfWork = unitOfWork;
         }
 
         public async Task AddAsync(T entity)
         {
-            await _writeRepository.AddAsync(entity);
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                await _writeRepository.AddAsync(entity);
+            }
+            catch (Exception)
+            {
+
+                throw new ClientSideException($"Added Error {typeof(T)}");
+            }
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            await _writeRepository.DeleteAsync(id);
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                await _writeRepository.DeleteAsync(id);
+            }
+            catch (Exception)
+            {
+
+                throw new ClientSideException($"Deleted Error {typeof(T)}");
+            }
         }
 
         public async Task<List<T>> GetActiveAsync()
@@ -52,8 +64,15 @@ namespace MiniECommerce.Persistance
 
         public async Task UpdateAsync(T entity)
         {
-            await _writeRepository.Update(entity);
-            await _unitOfWork.SaveAsync();
+            try
+            {
+                await _writeRepository.Update(entity);
+            }
+            catch (Exception)
+            {
+
+                throw new ClientSideException($"Updated Error {typeof(T)}");
+            }
         }
 
         public async Task<List<T>> Where(Expression<Func<T, bool>> filter)
