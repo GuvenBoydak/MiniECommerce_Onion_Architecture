@@ -9,5 +9,9 @@ namespace MiniECommerce.Application
         Task<List<Offer>> GetByOffersFromAppUserProductsAsync(Guid appUserID);
 
         Task<List<Offer>> GetByAppUserMadeOffersAsync(Guid appUserID);
+
+        Task OfferApprovalAsync(Offer offer);
+
+        Task BuyProductAsync(Offer offer);
     }
 }

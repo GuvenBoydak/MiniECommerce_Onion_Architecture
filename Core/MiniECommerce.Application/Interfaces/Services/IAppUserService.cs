@@ -14,6 +14,6 @@ namespace MiniECommerce.Application
 
         Task<AccessToken> CreateAccessTokenAsync(AppUser entity);
 
-        Task UpdatePasswordAsync(Guid id, AppUserPasswordUpdateDto entity);
+        Task UpdatePasswordAsync(AppUserPasswordUpdateDto entity);
     }
 }
