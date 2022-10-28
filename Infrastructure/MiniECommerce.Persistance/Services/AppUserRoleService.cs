@@ -10,9 +10,9 @@ namespace MiniECommerce.Persistance
         {
         }
 
-        public async Task<List<AppUserRole>> GetAppUserID(Guid id)
+        public async Task<List<AppUserRole>> GetAppUserID(Guid appUserID)
         {
-            return await _readRepository.Where(x=>x.AppUserID==id).ToListAsync();
+            return await _readRepository.Where(x=>x.AppUserID== appUserID).ToListAsync();
         }
     }
 }
