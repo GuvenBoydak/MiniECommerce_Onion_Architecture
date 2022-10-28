@@ -15,10 +15,5 @@ namespace MiniECommerce.Persistance
         {
             return await Table.Where(x => x.CategoryID == categoryID).ToListAsync();
         }
-
-        public async Task<List<Product>> GetByOffersOfAppUserProductsAsync(Guid appUserID)
-        {
-            return await Table.Include(x => x.Offers).Where(x => x.AppUserID == appUserID).ToListAsync();
-        }
     }
 }

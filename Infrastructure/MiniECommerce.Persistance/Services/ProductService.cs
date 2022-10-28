@@ -20,10 +20,5 @@ namespace MiniECommerce.Persistance
         {
             return await _readProductRepository.GetByCategoryWithProductsAsync(categoryID);
         }
-
-        public async Task<List<Product>> GetByOffersOfAppUserProductsAsync(Guid appUserID)
-        {
-            return await _readProductRepository.GetByOffersOfAppUserProductsAsync(appUserID);
-        }
     }
 }
