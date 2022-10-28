@@ -4,7 +4,7 @@ namespace MiniECommerce.Application
 {
     public class UpdateOfferCommand:IRequest
     {
-        public int ID { get; set; }
+        public Guid ID { get; set; }
 
         public decimal Price { get; set; }
 
