@@ -7,16 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\AppUser\**" />
+    <EmbeddedResource Remove="DTOs\AppUser\**" />
+    <None Remove="DTOs\AppUser\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.2.2" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\MiniECommerce.Domain\MiniECommerce.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Command\AppUser\CreateAppUser\" />
-    <Folder Include="Features\Query\" />
   </ItemGroup>
 
 </Project>
