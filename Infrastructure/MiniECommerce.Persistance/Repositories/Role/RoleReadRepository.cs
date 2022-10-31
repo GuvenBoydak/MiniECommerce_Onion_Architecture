@@ -6,5 +6,8 @@ namespace MiniECommerce.Persistance
 {
     public class RoleReadRepository : ReadRepository<Role>, IReadRoleRepository
     {
+        public RoleReadRepository(MiniECommerceDbContext db) : base(db)
+        {
+        }
     }
 }

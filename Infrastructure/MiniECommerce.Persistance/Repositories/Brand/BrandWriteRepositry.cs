@@ -3,9 +3,9 @@ using MiniECommerce.Domain;
 
 namespace MiniECommerce.Persistance
 {
-    public class BrandWriteRepositry : WriteRepository<Brand>, IWriteBrandRepository
+    public class BrandWriteRepository : WriteRepository<Brand>, IWriteBrandRepository
     {
-        public BrandWriteRepositry(MiniECommerceDbContext db) : base(db)
+        public BrandWriteRepository(MiniECommerceDbContext db) : base(db)
         {
         }
     }

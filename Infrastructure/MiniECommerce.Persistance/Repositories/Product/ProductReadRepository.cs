@@ -6,6 +6,10 @@ namespace MiniECommerce.Persistance
 {
     public class ProductReadRepository : ReadRepository<Product>, IReadProductRepository
     {
+        public ProductReadRepository(MiniECommerceDbContext db) : base(db)
+        {
+        }
+
         public async Task<List<Product>> GetAppUserProductsAsync(Guid appUserID)
         {
             return await Table.Where(x => x.AppUserID == appUserID).ToListAsync();

@@ -9,6 +9,11 @@ namespace MiniECommerce.Persistance
     {
         protected readonly MiniECommerceDbContext _db;
 
+        public ReadRepository(MiniECommerceDbContext db)
+        {
+            _db = db;
+        }
+
         public DbSet<T> Table => _db.Set<T>();
 
         public IQueryable<T> GetActive()

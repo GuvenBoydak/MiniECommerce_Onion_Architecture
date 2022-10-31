@@ -3,9 +3,9 @@ using MiniECommerce.Domain;
 
 namespace MiniECommerce.Persistance
 {
-    public class RoleWriterepository : WriteRepository<Role>, IWriteRoleRepository
+    public class RoleWriteRepository : WriteRepository<Role>, IWriteRoleRepository
     {
-        public RoleWriterepository(MiniECommerceDbContext db) : base(db)
+        public RoleWriteRepository(MiniECommerceDbContext db) : base(db)
         {
         }
     }

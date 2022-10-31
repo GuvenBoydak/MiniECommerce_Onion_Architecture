@@ -6,6 +6,10 @@ namespace MiniECommerce.Persistance
 {
     public class AppUserReadRepository : ReadRepository<AppUser>, IReadAppUserRepository
     {
+        public AppUserReadRepository(MiniECommerceDbContext db) : base(db)
+        {
+        }
+
         public async Task<AppUser> GetByActivationCode(Guid code)
         {
             return await Table.FirstOrDefaultAsync(x => x.ActivationCode == code);

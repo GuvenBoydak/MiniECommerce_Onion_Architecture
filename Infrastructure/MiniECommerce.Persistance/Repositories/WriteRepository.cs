@@ -28,7 +28,7 @@ namespace MiniECommerce.Persistance
 
         public async Task Update(T entity)
         {
-            T updatedEntity = await Table.FindAsync(entity.ID);
+            T updatedEntity = await Table.Where(x=>x.ID==entity.ID).AsNoTracking().FirstOrDefaultAsync();
             updatedEntity.Status = DataStatus.Updated;
             Table.Update(entity);
         }
