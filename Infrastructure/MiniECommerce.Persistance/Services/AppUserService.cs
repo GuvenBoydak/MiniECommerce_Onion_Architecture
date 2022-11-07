@@ -95,7 +95,8 @@ namespace MiniECommerce.Persistance.Services
                 if (appUser.IncorrectEntry == 4)
                 {
                     appUser.IsLock = true; //3 kere yanlış girilen kulanıcıyı Lock ediyoruz.
-                    //DelayedJob.SendMailJob(appUser);//Mail Gönderiyoruz.
+                    DelayedJob.SendMailJob(appUser);//Mail Gönderiyoruz.
+                    
                     await UpdateAsync(appUser);//IsLock Güncelliyoruz
                     throw new InvalidOperationException($"Şifreniz 3 kez yanlış girildi Hesap Askıya alındı");
                 }
