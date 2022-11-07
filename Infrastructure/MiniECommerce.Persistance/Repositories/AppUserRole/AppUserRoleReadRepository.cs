@@ -12,7 +12,7 @@ namespace MiniECommerce.Persistance
 
         public async Task<List<AppUserRole>> GetAppUserID(Guid id)
         {
-            return await Table.Where(x => x.ID == id).ToListAsync();
+            return await Table.Where(x => x.AppUserID == id).ToListAsync();
         }
     }
 }

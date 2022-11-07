@@ -27,7 +27,7 @@ namespace MiniECommerce.Api.Controllers
         }
 
         [HttpGet]
-        [Route("GetAll")]
+        [Route("GetActive")]
         public async Task<IActionResult> GetActiveAsync()
         {
             List<AppUserRoleListDto> result = await _mediator.Send(new GetActiveAppUserRoleQuery());

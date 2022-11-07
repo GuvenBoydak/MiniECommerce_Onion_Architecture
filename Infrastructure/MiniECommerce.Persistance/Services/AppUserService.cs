@@ -38,7 +38,7 @@ namespace MiniECommerce.Persistance.Services
                     AppUserRole appUserRole = new AppUserRole()
                     {
                         AppUserID = user.ID,
-                        RoleID = roles.FirstOrDefault(x => x.Name.Contains("Member")).ID
+                        RoleID = roles.FirstOrDefault(x => x.Name.Contains("Member"))!.ID
                     };
                    await _writeAppUserRoleRepository.AddAsync(appUserRole);
                 }
@@ -47,7 +47,7 @@ namespace MiniECommerce.Persistance.Services
                     AppUserRole appUserRole = new AppUserRole()
                     {
                         AppUserID = user.ID,
-                        RoleID = roles.FirstOrDefault(x => x.Name.Contains("Admin")).ID
+                        RoleID = roles.FirstOrDefault(x => x.Name.Contains("Admin"))!.ID
                     };
                     await _writeAppUserRoleRepository.AddAsync(appUserRole);
                 }

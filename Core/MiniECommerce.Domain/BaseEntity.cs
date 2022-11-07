@@ -6,7 +6,7 @@
         {
             CreatedDate = DateTime.UtcNow;
             Status = DataStatus.Inserted;
-            ID = new Guid();
+            ID = Guid.NewGuid();
         }
 
         public Guid ID { get; set; }

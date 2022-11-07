@@ -5,6 +5,6 @@ namespace MiniECommerce.Application
 {
     public interface IRepository<T> where  T :BaseEntity
     {
-      protected  DbSet<T> Table { get; }
+        public DbSet<T> Table { get; }
     }
 }
