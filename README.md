@@ -1,6 +1,7 @@
 ## MiniECommerce Onion Architecture
 ## *Kullanıcıların giriş işlemleri yaptıkları ve Ürünlere teklif vererek veya direk satın aldıkları mini e Ticaret uygulaması.*
 #### *Projede kullanılan teknoloji ve kütüphaneler*
+- Onion Architecture
 - Entity Framework 
 - JWT Authentication
 - Hangfire BackgroundJop
